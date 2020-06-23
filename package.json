@@ -1,0 +1,23 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "JS Excel Application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dis500/excel.git"
+  },
+  "keywords": [
+    "js",
+    "excel"
+  ],
+  "author": "Igor Druzhinin <barca125@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dis500/excel/issues"
+  },
+  "homepage": "https://github.com/dis500/excel#readme"
+}
