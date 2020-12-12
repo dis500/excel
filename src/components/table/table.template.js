@@ -4,25 +4,31 @@ const CODES = {
 }
 
 function createRow(number = '', content) {
+    const resize = number ? `<div class="row-resize" data-resize="row"></div>` : ''
     return `
-        <div class="row">
-            <div class="row-info">${number}</div>
+        <div class="row" data-type="resizeble">
+            <div class="row-info" data-index="${number}">
+                ${number}
+                ${resize}
+            </div>
             <div class="row-data">${content}</div>
         </div>
     `
 }
 
-function createCol(content) {
+function createCol(content, index) {
     return ` 
-        <div class="column">
+        <div class="column" data-type="resizeble" data-index="${index}">
             ${content}
+            <div class="col-resize" data-resize="col"></div>
         </div>
     `
 }
 
-function createCell() {
+
+function createCell(col) {
     return `
-        <div class="cell" contenteditable></div>
+        <div class="cell" contenteditable data-type=${col}></div>
     `
 }
 
@@ -33,8 +39,8 @@ export function createTable(rowsCount = 15) {
     const cells = []
 
     for (let i = 0; i <= colsCount; i++) {
-        cols.push(createCol(String.fromCharCode(CODES.A)))
-        cells.push(createCell())
+        cols.push(createCol(String.fromCharCode(CODES.A), i))
+        cells.push(createCell(i))
         CODES.A++
     }
 

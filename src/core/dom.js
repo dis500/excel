@@ -32,6 +32,36 @@
         }
         return this
     }
+
+    closest(selector) {
+        return $(this.$el.closest(selector))
+    }
+
+    getCoords() {
+        return this.$el.getBoundingClientRect()
+    }
+
+    get data() {
+        return this.$el.dataset
+    }
+
+    get offsetWidth() {
+        return this.$el.offsetWidth
+    }
+
+    get offsetHeight() {
+        return this.$el.offsetHeight
+    }
+
+    css(styles = {}) {
+        for (const key in styles) {
+            this.$el.style[key] = styles[key]
+        } 
+    }
+
+    findAll(selector) {
+        return this.$el.querySelectorAll(selector)
+    }
 }
 
 export function $(selector) {
