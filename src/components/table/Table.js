@@ -18,7 +18,7 @@ export class Table extends ExcelComponent {
   }
   
   onMousedown(event) {
-    if (shouldResize) {
+    if (event.target.dataset.resize) {
       resizeHandler(this.$root, event)
     }
   }
