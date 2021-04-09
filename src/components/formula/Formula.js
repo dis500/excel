@@ -1,12 +1,14 @@
 import {ExcelComponent} from '@core/ExcelComponent'
+import {$} from '@core/dom'
 
 export class Formula extends ExcelComponent {
     static className = 'excel__formula'
 
-    constructor($root) {
+    constructor($root, options) {
         super($root, {
             name: 'Formula',
-            listeners: ['input', 'click']
+            listeners: ['input', 'keydown'],
+            ...options
         })
     }
 
@@ -17,19 +19,24 @@ export class Formula extends ExcelComponent {
         `
     }
 
+    init() {
+        super.init()
+        const input = this.$root.find('.input')
+        
+        this.$on('Table:keyup', text => {
+            input.text(text)
+        })
+    }
+
     onInput(event) {
-         /* console.log(this.$root)
-        console.log(event)  */
+       const text = event.target.textContent.trim()
+       this.$emit('Formula:input', text)
     }
 
-    onClick() {
-
-    }
-
-    Input(event) {
-        console.log('слушатель удален')
-        if (event.inputType === 'deleteContentBackward') {
-            this.$root.$el.removeEventListeners('input', onInput)
+    onKeydown(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            this.$emit('Formula:Enter')
         }
     }
 }
