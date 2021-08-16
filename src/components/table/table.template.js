@@ -26,29 +26,37 @@ function createCol(content, index) {
 }
 
 
-function createCell(col) {
+function createCell(col, row) {
     return `
-        <div class="cell" contenteditable data-type=${col}></div>
+        <div class="cell" contenteditable data-col=${col} data-id=${row}:${col}></div>
     `
 }
 
 export function createTable(rowsCount = 15) {
     const colsCount = CODES.Z - CODES.A
+    let count = CODES.A
     const rows = []
     const cols = []
-    const cells = []
 
     for (let i = 0; i <= colsCount; i++) {
-        cols.push(createCol(String.fromCharCode(CODES.A), i))
-        cells.push(createCell(i))
-        CODES.A++
+        cols.push(createCol(String.fromCharCode(count), i))
+        count++
     }
 
     rows.push(createRow('', cols.join('')))
 
     for (let i = 0; i <= rowsCount; i++) {
+        const cells = []
+        for (let j = 0; j <= colsCount; j++) {
+            cells.push(createCell(j, i))
+        }
         rows.push(createRow(i + 1, cells.join('')))
     } 
-
+    
     return rows.join('')
-} 
+}
+
+export function colsCount() {
+    const colsCount = CODES.Z - CODES.A
+    return colsCount
+}
