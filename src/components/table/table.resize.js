@@ -31,22 +31,22 @@ export function resizeHandler($root, event) {
     }
 
     document.onmouseup = (e) => {
-    if (type === 'col') {
-        $parent.css({width: value + 'px'})
-        
-        const collection = $root.findAll(`[data-col="${$parent.data.index}"]`)
-        collection.forEach(element => {
-            element = $(element)
-            element.css({width: value + 'px'})
-        }) 
-        $target.css({opacity: 0, height: targetStartHeight, right: 0})
-    } else {
-        $parent.css({height: value + 'px'})
-        
-        $target.css({opacity: 0, width: targetStartWidth, bottom: 0})
-    }
-    document.onmousemove = null
-    document.onmouseup = null
+        if (type === 'col') {
+            $parent.css({width: value + 'px'})
+            
+            const collection = $root.findAll(`[data-col="${$parent.data.index}"]`)
+            collection.forEach(element => {
+                element = $(element)
+                element.css({width: value + 'px'})
+            }) 
+            $target.css({opacity: 0, height: targetStartHeight, right: 0})
+        } else {
+            $parent.css({height: value + 'px'})
+            
+            $target.css({opacity: 0, width: targetStartWidth, bottom: 0})
+        }
+        document.onmousemove = null
+        document.onmouseup = null
     }
 }
     
